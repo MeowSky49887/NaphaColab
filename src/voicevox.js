@@ -1,5 +1,10 @@
 const express = require('express');
-const voicevoxApp = express()
+const axios = require('axios');
+const cors = require('cors');
+const favicon = require('serve-favicon');
+const path = require('path');
+const bodyParser = require('body-parser');
+const utils = require('./utils');const voicevoxApp = express()
 
 voicevoxApp.get('/*', (req, res) => {
     let url = 'https://napha-voicevox.loca.lt' + req.originalUrl;
