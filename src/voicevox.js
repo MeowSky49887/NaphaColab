@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const utils = require('./utils');const voicevoxApp = express()
 
 voicevoxApp.get('/*', (req, res) => {
-    let url = 'https://napha-voicevox.loca.lt' + req.originalUrl;
+    let url = 'https://napha-voicevox.loca.lt' + req.originalUrl.replace("/voicevoxApp","");
 
     axios.get(url, {
         headers: {
@@ -29,7 +29,7 @@ voicevoxApp.get('/*', (req, res) => {
 });
 
 voicevoxApp.post('/*', (req, res) => {
-    let url = 'https://napha-voicevox.loca.lt' + req.originalUrl;
+    let url = 'https://napha-voicevox.loca.lt' + req.originalUrl.replace("/voicevoxApp","");
 
     axios.post(url, req.body, {
         headers: {
