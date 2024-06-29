@@ -19,13 +19,7 @@ const create = async () => {
     });
 
     app.get('/*', (req, res) => {
-        let url;
-
-        if (req.originalUrl.includes('/llama')) {
-            url = 'https://napha-llama.loca.lt' + req.originalUrl.replace("/llama", "");
-        } else if (req.originalUrl.includes('/voicevox')) {
-            url = 'https://napha-voicevox.loca.lt' + req.originalUrl.replace("/voicevox", "");
-        }
+        let url = 'https://napha-voicevox.loca.lt' + req.originalUrl.replace("/voicevox", "");
 
         axios.get(url, {
             headers: {
@@ -47,13 +41,7 @@ const create = async () => {
     });
 
     app.post('/*', (req, res) => {
-        let url;
-
-        if (req.originalUrl.includes('/llama')) {
-            url = 'https://napha-llama.loca.lt' + req.originalUrl.replace("/llama", "");
-        } else if (req.originalUrl.includes('/voicevox')) {
-            url = 'https://napha-voicevox.loca.lt' + req.originalUrl.replace("/voicevox", "");
-        }
+        let url = 'https://napha-voicevox.loca.lt' + req.originalUrl.replace("/voicevox", "");
 
         axios.post(url, req.body, {
             headers: {
