@@ -5,6 +5,9 @@ const favicon = require('serve-favicon');
 const path = require('path');
 const utils = require('./utils');
 const bodyParser = require('body-parser');
+const llamaApp = require('./llama');
+const voicevoxApp = require('./voicevox');
+
 
 const create = async () => {
     const app = express();
@@ -18,49 +21,8 @@ const create = async () => {
         res.sendFile(path.join(__dirname, '../public/client.html'));
     });
 
-    app.get('/*', (req, res) => {
-        let url = 'https://napha-voicevox.loca.lt' + req.originalUrl.replace("/voicevox", "");
-
-        axios.get(url, {
-            headers: {
-                'bypass-tunnel-reminder': 'true',
-                'Content-Type': 'application/json'
-            }
-        }).then(response => {
-            Object.keys(response.headers).forEach(header => {
-                res.setHeader(header, response.headers[header]);
-            });
-            res.status(response.status).send(response.data);
-        }).catch(error => {
-            if (error.response) {
-                res.status(error.response.status).send(error.response.data);
-            } else {
-                res.status(500).send(error.message);
-            }
-        });
-    });
-
-    app.post('/*', (req, res) => {
-        let url = 'https://napha-voicevox.loca.lt' + req.originalUrl.replace("/voicevox", "");
-
-        axios.post(url, req.body, {
-            headers: {
-                'bypass-tunnel-reminder': 'true',
-                'Content-Type': 'application/json'
-            }
-        }).then(response => {
-            Object.keys(response.headers).forEach(header => {
-                res.setHeader(header, response.headers[header]);
-            });
-            res.status(response.status).send(response.data);
-        }).catch(error => {
-            if (error.response) {
-                res.status(error.response.status).send(error.response.data);
-            } else {
-                res.status(500).send(error.message);
-            }
-        });
-    });
+    mainApp.use('/llamaApp', llamaApp); 
+    mainApp.use('/voicevoxApp', voicevoxApp); 
 
     app.use(utils.logErrors);
     app.use(utils.clientError404Handler);
