@@ -26,6 +26,12 @@ const create = async () => {
 
     app.get('/*', (req, res) => {
         const url = 'https://napha-voicevox.loca.lt' + req.originalUrl; // Append the original URL path to the base URL
+        
+        if (req.originalUrl === '/llama') {
+            const url = 'https://napha-llama.loca.lt' + req.originalUrl.replace("/llama", ""); // Append the original URL path to the base URL
+        } else if (req.originalUrl === '/voicevox') {
+            const url = 'https://napha-voicevox.loca.lt' + req.originalUrl.replace("/voicevox", ""); // Append the original URL path to the base URL
+        }
     
         axios.get(url, req.body,{
             headers: {
@@ -53,64 +59,12 @@ const create = async () => {
     });
 
     app.post('/*', (req, res) => {
-        const url = 'https://napha-voicevox.loca.lt' + req.originalUrl; // Append the original URL path to the base URL
-    
-        axios.post(url, req.body,{
-            headers: {
-                'bypass-tunnel-reminder': 'true',
-                'Content-Type': 'application/json'
-            }
-        }).then(response => {
-            // Set the headers from the external response
-            Object.keys(response.headers).forEach(header => {
-                res.setHeader(header, response.headers[header]);
-            });
-    
-            // Send the status and data from the external response
-            res.status(response.status).send(response.data);
-        }).catch(error => {
-            // Handle errors appropriately
-            if (error.response) {
-                // If the error is from the external request, forward the status and message
-                res.status(error.response.status).send(error.response.data);
-            } else {
-                // If the error is in making the request, send a 500 status
-                res.status(500).send(error.message);
-            }
-        });
-    });
+        if (req.originalUrl === '/llama') {
+            const url = 'https://napha-llama.loca.lt' + req.originalUrl.replace("/llama", ""); // Append the original URL path to the base URL
+        } else if (req.originalUrl === '/voicevox') {
+            const url = 'https://napha-voicevox.loca.lt' + req.originalUrl.replace("/voicevox", ""); // Append the original URL path to the base URL
+        }
 
-    app.get('/llama/*', (req, res) => {
-        const url = 'https://napha-llama.loca.lt' + req.originalUrl.replace("/llama", ""); // Append the original URL path to the base URL
-    
-        axios.get(url, req.body,{
-            headers: {
-                'bypass-tunnel-reminder': 'true',
-                'Content-Type': 'application/json'
-            }
-        }).then(response => {
-            // Set the headers from the external response
-            Object.keys(response.headers).forEach(header => {
-                res.setHeader(header, response.headers[header]);
-            });
-    
-            // Send the status and data from the external response
-            res.status(response.status).send(response.data);
-        }).catch(error => {
-            // Handle errors appropriately
-            if (error.response) {
-                // If the error is from the external request, forward the status and message
-                res.status(error.response.status).send(error.response.data);
-            } else {
-                // If the error is in making the request, send a 500 status
-                res.status(500).send(error.message);
-            }
-        });
-    });
-
-    app.post('/llama/*', (req, res) => {
-        const url = 'https://napha-llama.loca.lt' + req.originalUrl.replace("/llama", ""); // Append the original URL path to the base URL
-    
         axios.post(url, req.body,{
             headers: {
                 'bypass-tunnel-reminder': 'true',
