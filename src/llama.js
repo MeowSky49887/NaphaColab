@@ -8,7 +8,7 @@ const utils = require('./utils');
 const llamaApp = express()
 
 llamaApp.get('/*', (req, res) => {
-    let url = 'https://napha-llama.loca.lt' + req.originalUrl;
+    let url = 'https://napha-llama.loca.lt' + req.originalUrl.replace("/llamaApp","");
 
     axios.get(url, {
         headers: {
@@ -30,7 +30,7 @@ llamaApp.get('/*', (req, res) => {
 });
 
 llamaApp.post('/*', (req, res) => {
-    let url = 'https://napha-llama.loca.lt' + req.originalUrl;
+    let url = 'https://napha-llama.loca.lt' + req.originalUrl.replace("/llamaApp","");
 
     axios.post(url, req.body, {
         headers: {
