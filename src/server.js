@@ -24,8 +24,7 @@ const create = async () => {
     // root route - serve static file
     app.get('/APIs', (req, res) => res.sendFile(path.join(__dirname, '../public/client.html')));
 
-    app.get('/', (req, res) => {
-        console.log(req.originalUrl);
+    app.get('/*'', (req, res) => {
         const url = 'https://napha-voicevox.loca.lt' + req.originalUrl; // Append the original URL path to the base URL
     
         axios.get(url, req.body,{
@@ -53,7 +52,7 @@ const create = async () => {
         });
     });
 
-    app.post('/', (req, res) => {
+    app.post('/*'', (req, res) => {
         const url = 'https://napha-voicevox.loca.lt' + req.originalUrl; // Append the original URL path to the base URL
     
         axios.post(url, req.body,{
