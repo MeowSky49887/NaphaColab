@@ -1,7 +1,7 @@
 const express = require('express');
 const llamaApp = express()
 
-app.get('/*', (req, res) => {
+llamaApp.get('/*', (req, res) => {
     let url = 'https://napha-llama.loca.lt' + req.originalUrl;
 
     axios.get(url, {
@@ -23,7 +23,7 @@ app.get('/*', (req, res) => {
     });
 });
 
-app.post('/*', (req, res) => {
+llamaApp.post('/*', (req, res) => {
     let url = 'https://napha-llama.loca.lt' + req.originalUrl;
 
     axios.post(url, req.body, {
