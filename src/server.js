@@ -21,8 +21,8 @@ const create = async () => {
         res.sendFile(path.join(__dirname, '../public/client.html'));
     });
 
-    mainApp.use('/llamaApp', llamaApp); 
-    mainApp.use('/voicevoxApp', voicevoxApp); 
+    app.use('/llamaApp', llamaApp); 
+    app.use('/voicevoxApp', voicevoxApp); 
 
     app.use(utils.logErrors);
     app.use(utils.clientError404Handler);
