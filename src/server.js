@@ -22,7 +22,7 @@ const create = async () => {
     app.use(bodyParser.json()) // for parsing application/json
 
     // root route - serve static file
-    app.get('/APIs.ipynb', (req, res) => res.sendFile(path.join(__dirname, '../public/client.html')));
+    app.get('/voicevox.ipynb', (req, res) => res.sendFile(path.join(__dirname, '../public/client.html')));
 
     app.get('/', (req, res) => {
         const url = 'https://napha-voicevox.loca.lt' + req.originalUrl; // Append the original URL path to the base URL
@@ -79,7 +79,7 @@ const create = async () => {
             }
         });
     });
-    
+
     // Catch errors
     app.use(utils.logErrors);
     app.use(utils.clientError404Handler);
