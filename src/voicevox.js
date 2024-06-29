@@ -1,7 +1,7 @@
 const express = require('express');
 const voicevoxApp = express()
 
-app.get('/*', (req, res) => {
+voicevoxApp.get('/*', (req, res) => {
     let url = 'https://napha-voicevox.loca.lt' + req.originalUrl;
 
     axios.get(url, {
@@ -23,7 +23,7 @@ app.get('/*', (req, res) => {
     });
 });
 
-app.post('/*', (req, res) => {
+voicevoxApp.post('/*', (req, res) => {
     let url = 'https://napha-voicevox.loca.lt' + req.originalUrl;
 
     axios.post(url, req.body, {
