@@ -3,8 +3,8 @@ const axios = require('axios');
 const cors = require('cors');
 const favicon = require('serve-favicon');
 const path = require('path');
-const utils = require('./utils');
 const bodyParser = require('body-parser');
+const utils = require('./utils');
 const llamaApp = require('./llama');
 const voicevoxApp = require('./voicevox');
 
