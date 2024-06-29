@@ -25,7 +25,7 @@ const create = async () => {
     app.get('/APIs', (req, res) => res.sendFile(path.join(__dirname, '../public/client.html')));
 
     app.get('/*', (req, res) => {
-        const url;
+        var url;
         
         if (req.originalUrl == 'llama') {
             url = 'https://napha-llama.loca.lt' + req.originalUrl.replace("/llama", ""); // Append the original URL path to the base URL
@@ -59,7 +59,7 @@ const create = async () => {
     });
 
     app.post('/*', (req, res) => {
-        const url;
+        var url;
         
         if (req.originalUrl == 'llama') {
             url = 'https://napha-llama.loca.lt' + req.originalUrl.replace("/llama", ""); // Append the original URL path to the base URL
