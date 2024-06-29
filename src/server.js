@@ -22,9 +22,10 @@ const create = async () => {
     app.use(bodyParser.json()) // for parsing application/json
 
     // root route - serve static file
-    app.get('/voicevox.ipynb', (req, res) => res.sendFile(path.join(__dirname, '../public/client.html')));
+    app.get('/APIs', (req, res) => res.sendFile(path.join(__dirname, '../public/client.html')));
 
     app.get('/', (req, res) => {
+        console.log(req.originalUrl);
         const url = 'https://napha-voicevox.loca.lt' + req.originalUrl; // Append the original URL path to the base URL
     
         axios.get(url, req.body,{
