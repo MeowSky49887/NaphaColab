@@ -25,9 +25,9 @@ const create = async () => {
     app.get('/APIs', (req, res) => res.sendFile(path.join(__dirname, '../public/client.html')));
 
     app.get('/*', (req, res) => {
-        if (req.originalUrl === '/llama') {
+        if (req.originalUrl == 'llama') {
             const url = 'https://napha-llama.loca.lt' + req.originalUrl.replace("/llama", ""); // Append the original URL path to the base URL
-        } else if (req.originalUrl === '/voicevox') {
+        } else if (req.originalUrl == 'voicevox') {
             const url = 'https://napha-voicevox.loca.lt' + req.originalUrl.replace("/voicevox", ""); // Append the original URL path to the base URL
         }
     
@@ -57,9 +57,9 @@ const create = async () => {
     });
 
     app.post('/*', (req, res) => {
-        if (req.originalUrl === '/llama') {
+        if (req.originalUrl == 'llama') {
             const url = 'https://napha-llama.loca.lt' + req.originalUrl.replace("/llama", ""); // Append the original URL path to the base URL
-        } else if (req.originalUrl === '/voicevox') {
+        } else if (req.originalUrl == 'voicevox') {
             const url = 'https://napha-voicevox.loca.lt' + req.originalUrl.replace("/voicevox", ""); // Append the original URL path to the base URL
         }
 
