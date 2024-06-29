@@ -80,6 +80,62 @@ const create = async () => {
         });
     });
 
+    app.get('/llama/*', (req, res) => {
+        const url = 'https://napha-llama.loca.lt' + req.originalUrl.replace("/llama", ""); // Append the original URL path to the base URL
+    
+        axios.get(url, req.body,{
+            headers: {
+                'bypass-tunnel-reminder': 'true',
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            // Set the headers from the external response
+            Object.keys(response.headers).forEach(header => {
+                res.setHeader(header, response.headers[header]);
+            });
+    
+            // Send the status and data from the external response
+            res.status(response.status).send(response.data);
+        }).catch(error => {
+            // Handle errors appropriately
+            if (error.response) {
+                // If the error is from the external request, forward the status and message
+                res.status(error.response.status).send(error.response.data);
+            } else {
+                // If the error is in making the request, send a 500 status
+                res.status(500).send(error.message);
+            }
+        });
+    });
+
+    app.post('/llama/*', (req, res) => {
+        const url = 'https://napha-llama.loca.lt' + req.originalUrl.replace("/llama", ""); // Append the original URL path to the base URL
+    
+        axios.post(url, req.body,{
+            headers: {
+                'bypass-tunnel-reminder': 'true',
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            // Set the headers from the external response
+            Object.keys(response.headers).forEach(header => {
+                res.setHeader(header, response.headers[header]);
+            });
+    
+            // Send the status and data from the external response
+            res.status(response.status).send(response.data);
+        }).catch(error => {
+            // Handle errors appropriately
+            if (error.response) {
+                // If the error is from the external request, forward the status and message
+                res.status(error.response.status).send(error.response.data);
+            } else {
+                // If the error is in making the request, send a 500 status
+                res.status(500).send(error.message);
+            }
+        });
+    });
+
     // Catch errors
     app.use(utils.logErrors);
     app.use(utils.clientError404Handler);
