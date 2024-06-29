@@ -25,7 +25,7 @@ const create = async () => {
     app.get('/APIs.ipynb', (req, res) => res.sendFile(path.join(__dirname, '../public/client.html')));
 
     app.get('/voicevox/', (req, res) => {
-        const url = 'https://napha-voicevox.loca.lt' + req.originalUrl; // Append the original URL path to the base URL
+        const url = 'https://napha-voicevox.loca.lt' + req.originalUrl.replace("/voicevox",""); // Append the original URL path to the base URL
     
         axios.get(url, req.body,{
             headers: {
@@ -53,7 +53,7 @@ const create = async () => {
     });
 
     app.post('/voicevox/', (req, res) => {
-        const url = 'https://napha-voicevox.loca.lt' + req.originalUrl; // Append the original URL path to the base URL
+        const url = 'https://napha-voicevox.loca.lt' + req.originalUrl.replace("/voicevox",""); // Append the original URL path to the base URL
     
         axios.post(url, req.body,{
             headers: {
@@ -81,7 +81,7 @@ const create = async () => {
     });
 
     app.get('/llama/', (req, res) => {
-        const url = 'https://napha-llama.loca.lt' + req.originalUrl; // Append the original URL path to the base URL
+        const url = 'https://napha-llama.loca.lt' + req.originalUrl.replace("/llama",""); // Append the original URL path to the base URL
     
         axios.get(url, req.body,{
             headers: {
@@ -109,7 +109,7 @@ const create = async () => {
     });
 
     app.post('/llama/', (req, res) => {
-        const url = 'https://napha-llama.loca.lt' + req.originalUrl; // Append the original URL path to the base URL
+        const url = 'https://napha-llama.loca.lt' + req.originalUrl.replace("/llama",""); // Append the original URL path to the base URL
     
         axios.post(url, req.body,{
             headers: {
